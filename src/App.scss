@@ -1,6 +1,8 @@
 @import "styles/colors";
 @import "styles/breakpoints";
 @import "styles/mixins";
+@import "styles/container";
+@import "styles/partials/all";
 
 .App {
   background-color: $main-green;
