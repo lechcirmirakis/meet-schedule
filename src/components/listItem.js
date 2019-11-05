@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 
 const listItem = props => {
@@ -14,6 +15,7 @@ const listItem = props => {
             {props.descript}
           </Card.Text>
         </Collapse>
+        <Button variant="danger" onClick={props.deltrigger}>Delete</Button>
       </Card.Body>
     </Card>
   )

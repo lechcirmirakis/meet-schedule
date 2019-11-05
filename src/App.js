@@ -8,7 +8,12 @@ import './App.scss';
 
 class App extends Component {
   state = {
-    list: []
+    list: [],
+    delModalShow: false,
+    meetToDel: {
+      id: null,
+      title: ''
+    }
   }
 
   componentDidMount() {
@@ -16,7 +21,7 @@ class App extends Component {
     this.setState({ list: staticlist });
   }
 
-  showDescript = id => {
+  showItemDescript = id => {
     const meetList = [...this.state.list];
     const userIndex = meetList.findIndex(item => item.id === id);
 
@@ -24,6 +29,11 @@ class App extends Component {
     meetList[userIndex].open = !openState;
 
     this.setState({list: meetList});
+  }
+
+  delModalTrigger = () => {
+    const modalState = this.state.delModalShow;
+    this.setState({delModalShow: !modalState})
   }
 
   render() {
@@ -36,7 +46,10 @@ class App extends Component {
         <Container>
           <List
             meetList={this.state.list}
-            showDescript={this.showDescript} />
+            showDescript={this.showItemDescript}
+            delModalState={this.state.delModalShow}
+            delTrigger={this.delModalTrigger}
+            />
         </Container>
       </div>
     );
