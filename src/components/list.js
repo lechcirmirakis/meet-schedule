@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import Button from 'react-bootstrap/Button';
 import ListItem from './listItem';
 
 const list = props => {
@@ -17,12 +18,16 @@ const list = props => {
   }
 
   const lengthState = props.meetList.length > 0
-  const meetings = lengthState ? props.meetList.map(showList) : <h4 className="list_title">You don't have any meetings scheduled</h4>
-  const classes = ['meet_list', !lengthState ? 'flex-center' : null];
 
+  const icon = !lengthState ? <img className="list_icon" src="images/icons/stop.png" alt="no meetings" /> : null
+  const meetings = lengthState ? props.meetList.map(showList) : <h4 className="list_title">You don't have any meetings scheduled</h4>
+  const addButotn = !lengthState ? <Button variant="success">Add meeting </Button> : null;
+  
   return (
-    <div className={classes.join(' ')}>
+    <div className={['meet_list', !lengthState ? 'flex-center' : null].join(' ')}>
+      {icon}
       {meetings}
+      {addButotn}
     </div>
   )
 }

@@ -4,6 +4,7 @@
 
   .list_title {
     text-align: center;
+    margin-bottom: 30px;
 
     @include medium {
       font-size: 2rem;
@@ -12,6 +13,11 @@
     @include mediumLarge {
       font-size: 2.5rem;
     }
+  }
+
+  .list_icon {
+    width: 100px;
+    margin-bottom: 30px;
   }
 }
 
@@ -27,4 +33,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }

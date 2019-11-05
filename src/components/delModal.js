@@ -13,7 +13,7 @@ const delModal = props => {
       onHide={props.delTrigger}
       show={props.show}>
       <Modal.Header closeButton>
-        <Modal.Title>Delete "{props.title}" ?</Modal.Title>
+        <Modal.Title>Delete "{props.meetTitle}" ?</Modal.Title>
       </Modal.Header>
       <Modal.Body>Are you sure you want to delete this meeting?!</Modal.Body>
       <Modal.Footer>

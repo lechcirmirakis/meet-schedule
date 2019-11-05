@@ -69,6 +69,7 @@ class App extends Component {
             show={this.state.delModalShow}
             delTrigger={this.delModalTrigger}
             delHandler={this.delMeetingHandler}
+            meetTitle={this.state.meetToDel.title}
           />
         </Container>
       </div>

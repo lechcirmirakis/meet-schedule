@@ -17,7 +17,7 @@ const listItem = props => {
             {props.descript}
           </Card.Text>
         </Collapse>
-        <Button variant="danger" onClick={props.deltrigger}>Delete</Button>
+        <Button variant="warning" onClick={props.deltrigger}>Delete</Button>
       </Card.Body>
     </Card>
   )
