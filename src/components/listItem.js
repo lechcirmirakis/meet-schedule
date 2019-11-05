@@ -1,9 +1,11 @@
-import React, { memo } from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 
 const listItem = props => {
+  console.log('list Item render');
+
   return (
     <Card>
       <Card.Body>
@@ -21,4 +23,4 @@ const listItem = props => {
   )
 }
 
-export default memo(listItem);
+export default listItem;

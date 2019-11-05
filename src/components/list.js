@@ -1,5 +1,4 @@
-import React from 'react';
-import DelModal from './delModal';
+import React, { memo } from 'react';
 import ListItem from './listItem';
 
 const list = props => {
@@ -14,18 +13,18 @@ const list = props => {
       endtime={endTime}
       open={open}
       showDescript={() => props.showDescript(id)}
-      deltrigger={props.delTrigger} />
+      deltrigger={() => props.delTrigger(id, title)} />
   }
 
+  const lengthState = props.meetList.length > 0
+  const meetings = lengthState ? props.meetList.map(showList) : <h4 className="list_title">You don't have any meetings scheduled</h4>
+  const classes = ['meet_list', !lengthState ? 'flex-center' : null];
+
   return (
-    <>
-      {props.meetList.map(showList)}
-      <DelModal
-        show={props.delModalState}
-        deltrigger={props.delTrigger}
-      />
-    </>
+    <div className={classes.join(' ')}>
+      {meetings}
+    </div>
   )
 }
 
-export default list;
+export default memo(list);
