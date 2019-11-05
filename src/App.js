@@ -16,6 +16,16 @@ class App extends Component {
     this.setState({ list: staticlist });
   }
 
+  showDescript = id => {
+    const meetList = [...this.state.list];
+    const userIndex = meetList.findIndex(item => item.id === id);
+
+    const openState = meetList[userIndex].open;
+    meetList[userIndex].open = !openState;
+
+    this.setState({list: meetList});
+  }
+
   render() {
     console.log('APP RENDER');
     console.log(this.state.list);
@@ -24,7 +34,9 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Container>
-          <List meetList={this.state.list}/>
+          <List
+            meetList={this.state.list}
+            showDescript={this.showDescript} />
         </Container>
       </div>
     );
