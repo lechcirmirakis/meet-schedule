@@ -1,17 +1,5 @@
 // Media Queries mixins
 
-@mixin extraLarge {
-  @media (min-width: #{$extraLarge}) {
-    @content;
-  }
-}
-
-@mixin large {
-  @media (min-width: #{$large}) {
-    @content;
-  }
-}
-
 @mixin mediumLarge {
   @media (min-width: #{$mediumLarge}) {
     @content;
