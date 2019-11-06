@@ -1,5 +1,5 @@
 .meet_list {
-  margin: 16px 0;
+  margin: 80px 0 0;
   min-height: calc(100vh - 90px);
 
   .list_title {
@@ -24,8 +24,21 @@
 .card {
   margin: 16px 0;
 
-  .card-title {
+  .card-content {
     cursor: pointer;
+  }
+
+  .card-body {
+    transition: all 0.5s ease;
+  }
+
+  .card-body:hover,
+  .card-body:focus,
+  .card-body:active {
+    background: #d3d3d33d;
+    -webkit-box-shadow: 0 0 1px rgba(34, 25, 25, 0.4);
+    -moz-box-shadow: 0 0 1px rgba(34, 25, 25, 0.4);
+    box-shadow: 0 0 1px rgba(34, 25, 25, 0.4);
   }
 }
 

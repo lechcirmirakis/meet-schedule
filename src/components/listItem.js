@@ -9,14 +9,16 @@ const listItem = props => {
   return (
     <Card>
       <Card.Body>
-        <Card.Title onClick={props.showDescript}>{props.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{props.date}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">{props.starttime} - {props.endtime}</Card.Subtitle>
-        <Collapse in={props.open}>
-          <Card.Text>
-            {props.descript}
-          </Card.Text>
-        </Collapse>
+        <div className="card-content" onClick={props.showDescript}>
+          <Card.Title >{props.title}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">date: {props.date}</Card.Subtitle>
+          <Card.Subtitle className="mb-2 text-muted">hours: {props.starttime} - {props.endtime}</Card.Subtitle>
+          <Collapse in={props.open}>
+            <p>
+              {props.descript}
+            </p>
+          </Collapse>
+        </div>
         <Button variant="warning" onClick={props.deltrigger}>Delete</Button>
       </Card.Body>
     </Card>

@@ -1,12 +1,27 @@
+.fade .modal {
+  padding-left: 0 !important;
+}
+
 textarea {
   resize: none;
 }
 
 .form_buttons {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
 
   button:last-child {
     margin-left: 10px;
   }
+
+  .hour_valid {
+    font-size: 0.8rem;
+    color: red;
+    margin-bottom: 0;
+  }
+}
+
+.form_buttons--invalid {
+  justify-content: space-between;
 }

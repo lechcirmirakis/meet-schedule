@@ -14,14 +14,14 @@ const list = props => {
       endtime={endTime}
       open={open}
       showDescript={() => props.showDescript(id)}
-      deltrigger={() => props.delTrigger("del", id, title)} />
+      deltrigger={() => props.modalTrigger("del", id, title)} />
   }
 
   const lengthState = props.meetList.length > 0
 
   const icon = !lengthState ? <img className="list_icon" src="images/icons/stop.png" alt="no meetings" /> : null
   const meetings = lengthState ? props.meetList.map(showList) : <h4 className="list_title">You don't have any meetings scheduled</h4>
-  const addButotn = !lengthState ? <Button variant="success">Add meeting </Button> : null;
+  const addButotn = !lengthState ? <Button variant="success" onClick={props.modalTrigger}>Add meeting </Button> : null;
   
   return (
     <div className={['meet_list', !lengthState ? 'flex-center' : null].join(' ')}>

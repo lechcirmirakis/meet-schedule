@@ -14,6 +14,7 @@ class App extends Component {
     delModalShow: false,
     addModalShow: false,
     formValid: false,
+    hourValid: true,
     todaDate: false,
     formInputs: {
       name: {
@@ -64,8 +65,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('component did APP.js');
-
     if (!this.state.todaDate) {
       const formInputs = { ...this.state.formInputs };
       formInputs.date.min = this.getTodayDate();
@@ -114,7 +113,11 @@ class App extends Component {
       return
     }
 
-    this.setState({ [modalToTrigg]: !modalState });
+    if (modal !== 'del') {
+      this.formReset();
+    }
+
+    this.setState({ [modalToTrigg]: !modalState, hourValid: true });
   }
 
   delMeetingHandler = () => {
@@ -134,8 +137,19 @@ class App extends Component {
     this.setState({ formInputs: formInputs })
   }
 
+  formReset = () => {
+    // const resetForm = { ...this.state.formInputs };
+    const resetForm = Object.assign({}, this.state.formInputs);
+
+    // HOW IT WORKS????  ?????????????????????????????????????????????????
+    for (const key in resetForm) {
+      resetForm[key].value = ''
+    }
+
+    console.log(this.state.formInputs);
+  }
+
   submitFormHandler = event => {
-    console.log(event.currentTarget);
     const form = event.currentTarget;
 
     if (form.checkValidity() === false) {
@@ -148,13 +162,44 @@ class App extends Component {
       event.preventDefault();
       event.stopPropagation();
 
-      this.setState({ formValid: false });
-      console.log(this.state.formInputs);
+      let startTime = Date.parse('01/01/2011 ' + this.state.formInputs.start.value);
+      let endTime = Date.parse('01/01/2011 ' + this.state.formInputs.end.value);
+
+      if (!(endTime > startTime)) {
+        this.setState({ hourValid: false });
+        return
+      }
+
+      const meetList = [...this.state.list]
+
+      // get meeting ids for generate new meet id 
+      const ids = meetList.map(element => element.id);
+
+      // add new meet to list
+      const meetToAdd = {
+        id: ids.length !== 0 ? Math.max(...ids) + 1 : 1,
+        title: this.state.formInputs.name.value,
+        descript: this.state.formInputs.descript.value,
+        date: this.state.formInputs.date.value,
+        startTime: this.state.formInputs.start.value,
+        endTime: this.state.formInputs.end.value,
+        open: false
+      }
+
+      this.formReset();
+      meetList.push(meetToAdd);
+
+      this.setState({
+        list: meetList,
+        formValid: false,
+        hourValid: true,
+        addModalShow: false
+      });
     }
   }
 
   render() {
-    console.log('APP RENDER');
+    // console.log('APP RENDER');
 
     // change form Inputs object to array
     const formInputsArray = [];
@@ -175,7 +220,7 @@ class App extends Component {
           <List
             meetList={this.state.list}
             showDescript={this.showItemDescript}
-            delTrigger={this.modalTrigger}
+            modalTrigger={this.modalTrigger}
           />
           <DelModal
             show={this.state.delModalShow}
@@ -190,6 +235,7 @@ class App extends Component {
             handleSubmit={this.submitFormHandler}
             inputsArray={formInputsArray}
             updateInput={this.updateInputsHandler}
+            hourValid={this.state.hourValid}
           />
         </Container>
       </div>

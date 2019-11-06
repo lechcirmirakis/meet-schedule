@@ -5,7 +5,7 @@ import Container from '../hoc/container';
 
 const navbar = props => {
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" fixed="top">
       <Container>
         <Navbar.Brand href="#home">
           <img

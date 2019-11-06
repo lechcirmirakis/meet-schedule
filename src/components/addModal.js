@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 const AppModal = props => {
   console.log('ADD MODAL RENDER');
 
+  const validInfo = !props.hourValid ? <p className="hour_valid">Please enter valid hours</p> : null;
+
   return (
     <Modal
       size="lg"
@@ -40,13 +42,16 @@ const AppModal = props => {
               )
             })
           }
-          <Form.Group className="form_buttons">
-            <Button variant="outline-warning" onClick={props.addTrigger}>
-              Cancel
-            </Button>
-            <Button type="submit" variant="success" onClick={props.addHandler}>
-              Add
-            </Button>
+          <Form.Group className={['form_buttons', !props.hourValid ? 'form_buttons--invalid' : null].join(' ')}>
+            {validInfo}
+            <div>
+              <Button variant="outline-warning" onClick={props.addTrigger}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="success" onClick={props.addHandler}>
+                Add
+              </Button>
+            </div>
           </Form.Group>
         </Form>
       </Modal.Body>
