@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/lechcirmirakis/meet-schedule/static/css/main.f6dce4f8.chunk.css",
+    "main.css": "/lechcirmirakis/meet-schedule/static/css/main.fc87b5b2.chunk.css",
     "main.js": "/lechcirmirakis/meet-schedule/static/js/main.a12652f3.chunk.js",
     "main.js.map": "/lechcirmirakis/meet-schedule/static/js/main.a12652f3.chunk.js.map",
     "runtime-main.js": "/lechcirmirakis/meet-schedule/static/js/runtime-main.5277aaa1.js",
@@ -9,16 +9,16 @@
     "static/js/2.acadc2e4.chunk.js": "/lechcirmirakis/meet-schedule/static/js/2.acadc2e4.chunk.js",
     "static/js/2.acadc2e4.chunk.js.map": "/lechcirmirakis/meet-schedule/static/js/2.acadc2e4.chunk.js.map",
     "index.html": "/lechcirmirakis/meet-schedule/index.html",
-    "precache-manifest.d27e95173b495f68a5ed3809dc50a686.js": "/lechcirmirakis/meet-schedule/precache-manifest.d27e95173b495f68a5ed3809dc50a686.js",
+    "precache-manifest.049b9eafd988027b93e8a3f4d88160c4.js": "/lechcirmirakis/meet-schedule/precache-manifest.049b9eafd988027b93e8a3f4d88160c4.js",
     "service-worker.js": "/lechcirmirakis/meet-schedule/service-worker.js",
     "static/css/2.b0bb7f2c.chunk.css.map": "/lechcirmirakis/meet-schedule/static/css/2.b0bb7f2c.chunk.css.map",
-    "static/css/main.f6dce4f8.chunk.css.map": "/lechcirmirakis/meet-schedule/static/css/main.f6dce4f8.chunk.css.map"
+    "static/css/main.fc87b5b2.chunk.css.map": "/lechcirmirakis/meet-schedule/static/css/main.fc87b5b2.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.5277aaa1.js",
     "static/css/2.b0bb7f2c.chunk.css",
     "static/js/2.acadc2e4.chunk.js",
-    "static/css/main.f6dce4f8.chunk.css",
+    "static/css/main.fc87b5b2.chunk.css",
     "static/js/main.a12652f3.chunk.js"
   ]
 }

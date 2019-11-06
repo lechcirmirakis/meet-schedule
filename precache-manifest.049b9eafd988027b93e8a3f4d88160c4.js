@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "87f77bc20217d896ef78d551369bfea9",
+    "revision": "b93b63297ed9a10398822848bc7ca1d0",
     "url": "/lechcirmirakis/meet-schedule/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/lechcirmirakis/meet-schedule/static/css/2.b0bb7f2c.chunk.css"
   },
   {
-    "revision": "7f4db01b1d350441de50",
-    "url": "/lechcirmirakis/meet-schedule/static/css/main.f6dce4f8.chunk.css"
+    "revision": "95a9fa565ac31ab226c7",
+    "url": "/lechcirmirakis/meet-schedule/static/css/main.fc87b5b2.chunk.css"
   },
   {
     "revision": "25cc784dc5502337ad2e",
     "url": "/lechcirmirakis/meet-schedule/static/js/2.acadc2e4.chunk.js"
   },
   {
-    "revision": "7f4db01b1d350441de50",
+    "revision": "95a9fa565ac31ab226c7",
     "url": "/lechcirmirakis/meet-schedule/static/js/main.a12652f3.chunk.js"
   },
   {
