@@ -1,0 +1,12 @@
+textarea {
+  resize: none;
+}
+
+.form_buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button:last-child {
+    margin-left: 10px;
+  }
+}

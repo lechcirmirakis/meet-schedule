@@ -13,6 +13,24 @@ class App extends Component {
     list: [],
     delModalShow: false,
     addModalShow: false,
+    formValid: false,
+    formInputs: {
+      name: {
+        value: ''
+      },
+      descript: {
+        value: ''
+      },
+      date: {
+        value: ''
+      },
+      start: {
+        value: ''
+      },
+      end: {
+        value: ''
+      },
+    },
     meetToDel: {
       id: null,
       title: ''
@@ -34,8 +52,6 @@ class App extends Component {
   }
 
   modalTrigger = (modal, id, title) => {
-    console.log(modal);
-
     const modalState = modal === 'del' ? this.state.delModalShow : this.state.addModalShow;
     const modalToTrigg = modal === 'del' ? 'delModalShow' : 'addModalShow';
 
@@ -56,6 +72,35 @@ class App extends Component {
     let refreshArray = meetList.filter(item => item.id !== this.state.meetToDel.id);
 
     this.setState({ list: refreshArray, delModalShow: false });
+  }
+
+  updateInputsHandler = (event, name) => {
+    const inputType = event.target.name;
+    const inputValue = event.target.value;
+
+    let formInputs = { ...this.state.formInputs }
+    formInputs[inputType].value = inputValue;
+
+    this.setState({ formInputs: formInputs })
+  }
+
+  submitFormHandler = event => {
+    console.log(event.currentTarget);
+    const form = event.currentTarget;
+
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      this.setState({ formValid: true });
+    }
+    else {
+      event.preventDefault();
+      event.stopPropagation();
+
+      this.setState({ formValid: false });
+      console.log(this.state.formInputs);
+    }
   }
 
   render() {
@@ -81,6 +126,10 @@ class App extends Component {
           <AddModal
             show={this.state.addModalShow}
             addTrigger={this.modalTrigger}
+            valid={this.state.formValid}
+            handleSubmit={this.submitFormHandler}
+            formValues={this.state.formInputs}
+            updateInput={this.updateInputsHandler}
           />
         </Container>
       </div>
