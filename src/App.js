@@ -14,21 +14,47 @@ class App extends Component {
     delModalShow: false,
     addModalShow: false,
     formValid: false,
+    todaDate: false,
     formInputs: {
       name: {
-        value: ''
+        value: '',
+        title: 'Meeting title',
+        validText: 'Enter the meeting title!',
+        required: true,
+        type: 'text',
+        placeholder: 'Meeting title'
       },
       descript: {
-        value: ''
+        value: '',
+        title: 'Meeting description',
+        validText: 'Enter the meeting descript!',
+        required: true,
+        as: 'textarea',
+        rows: '4',
+        placeholder: 'Meeting description'
       },
       date: {
-        value: ''
+        value: '',
+        title: 'Meeting date',
+        validText: 'Enter the meeting date (min today date)!',
+        required: true,
+        type: 'date',
+        placeholder: null,
+        min: ''
       },
       start: {
-        value: ''
+        value: '',
+        title: 'Start of meeting',
+        validText: 'Select the meeting start time!',
+        required: true,
+        type: 'time'
       },
       end: {
-        value: ''
+        value: '',
+        title: 'End of meeting',
+        validText: 'Select the meeting end time!',
+        required: true,
+        type: 'time'
       },
     },
     meetToDel: {
@@ -39,7 +65,31 @@ class App extends Component {
 
   componentDidMount() {
     console.log('component did APP.js');
-    this.setState({ list: staticlist });
+
+    if (!this.state.todaDate) {
+      const formInputs = { ...this.state.formInputs };
+      formInputs.date.min = this.getTodayDate();
+
+      this.setState({
+        list: staticlist,
+        formInputs: formInputs,
+        todayDate: true
+      })
+    }
+  }
+
+  // get Today Date for date input in add meet form
+  getTodayDate = () => {
+    let todayDate = new Date();
+
+    let dd = todayDate.getDate();
+    let mm = todayDate.getMonth() + 1;
+    const yyyy = todayDate.getFullYear();
+
+    if (dd < 10) { dd = '0' + dd }
+    if (mm < 10) { mm = '0' + mm }
+
+    return todayDate = yyyy + '-' + mm + '-' + dd;
   }
 
   showItemDescript = id => {
@@ -106,8 +156,18 @@ class App extends Component {
   render() {
     console.log('APP RENDER');
 
+    // change form Inputs object to array
+    const formInputsArray = [];
+
+    for (const key in this.state.formInputs) {
+      formInputsArray.push({
+        key: key,
+        config: this.state.formInputs[key]
+      })
+    }
+
     return (
-      <div className="App">
+      <div className='App'>
         <Navbar
           addTrigger={this.modalTrigger}
         />
@@ -128,7 +188,7 @@ class App extends Component {
             addTrigger={this.modalTrigger}
             valid={this.state.formValid}
             handleSubmit={this.submitFormHandler}
-            formValues={this.state.formInputs}
+            inputsArray={formInputsArray}
             updateInput={this.updateInputsHandler}
           />
         </Container>

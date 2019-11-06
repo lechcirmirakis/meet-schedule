@@ -3,22 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-const addModal = props => {
+const AppModal = props => {
   console.log('ADD MODAL RENDER');
-  console.log(props.valid);
-
-  const getTodayDate = () => {
-    let todayDate = new Date();
-
-    let dd = todayDate.getDate();
-    let mm = todayDate.getMonth() + 1;
-    const yyyy = todayDate.getFullYear();
-
-    if (dd < 10) { dd = '0' + dd }
-    if (mm < 10) { mm = '0' + mm }
-
-    return todayDate = yyyy + '-' + mm + '-' + dd;
-  }
 
   return (
     <Modal
@@ -32,62 +18,28 @@ const addModal = props => {
       </Modal.Header>
       <Modal.Body>
         <Form noValidate validated={props.valid} onSubmit={(event) => props.handleSubmit(event)}>
-          <Form.Group>
-            <Form.Label>Meeting title</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Meeting title"
-              name="name"
-              value={props.formValues.name.value}
-              onChange={(event) => props.updateInput(event)}
-            />
-            <Form.Control.Feedback type="invalid">Enter the meeting title!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Meeting description</Form.Label>
-            <Form.Control
-              required
-              as="textarea"
-              rows="4"
-              placeholder="Meeting description"
-              name="descript"
-              onChange={(event) => props.updateInput(event)} />
-            <Form.Control.Feedback type="invalid">Enter the meeting descript!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Meeting date</Form.Label>
-            <Form.Control
-              required
-              type="date"
-              min={getTodayDate()}
-              name="date"
-              onChange={(event) => props.updateInput(event)}
-            />
-            <Form.Control.Feedback type="invalid">Enter the meeting date (min today date)!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Start of meeting</Form.Label>
-            <Form.Control
-              required
-              type="time"
-              name="start"
-              // min={getTodayDate()}
-              onChange={(event) => props.updateInput(event)}
-            />
-            <Form.Control.Feedback type="invalid">Select the meeting start time!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>End of meeting</Form.Label>
-            <Form.Control
-              required
-              type="time"
-              name="end"
-              onChange={(event) => props.updateInput(event)}
-            // min={getTodayDate()}
-            />
-            <Form.Control.Feedback type="invalid">Select the meeting end time!</Form.Control.Feedback>
-          </Form.Group>
+          {
+            props.inputsArray.map(input => {
+              return (
+                <Form.Group key={input.key}>
+                  <Form.Label>{input.config.title}</Form.Label>
+                  <Form.Control
+                    value={input.config.value}
+                    type={input.config.type}
+                    as={input.config.as}
+                    rows={input.config.rows}
+                    placeholder={input.config.placeholder}
+                    required={input.config.required}
+                    onChange={(event) => props.updateInput(event)}
+                    name={input.key}
+                    min={input.config.min}
+                  >
+                  </Form.Control>
+                  <Form.Control.Feedback type="invalid">{input.config.validText}</Form.Control.Feedback>
+                </Form.Group>
+              )
+            })
+          }
           <Form.Group className="form_buttons">
             <Button variant="outline-warning" onClick={props.addTrigger}>
               Cancel
@@ -102,4 +54,4 @@ const addModal = props => {
   )
 }
 
-export default memo(addModal);
+export default memo(AppModal);
