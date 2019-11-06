@@ -15,7 +15,7 @@ const navbar = props => {
           />
           {' Meet Schedule'}
         </Navbar.Brand>
-        <Button variant="success">Add</Button>
+        <Button variant="success" onClick={props.addTrigger}>Add</Button>
       </Container>
     </Navbar>
   )

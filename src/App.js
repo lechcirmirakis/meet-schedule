@@ -4,6 +4,7 @@ import Container from './hoc/container';
 import Navbar from './components/navbar';
 import List from './components/list';
 import DelModal from './components/delModal';
+import AddModal from './components/addModal';
 import staticlist from './static/list';
 import './App.scss';
 
@@ -11,6 +12,7 @@ class App extends Component {
   state = {
     list: [],
     delModalShow: false,
+    addModalShow: false,
     meetToDel: {
       id: null,
       title: ''
@@ -31,10 +33,13 @@ class App extends Component {
     this.setState({ list: meetList });
   }
 
-  delModalTrigger = (id, title) => {
-    const modalState = this.state.delModalShow;
+  modalTrigger = (modal, id, title) => {
+    console.log(modal);
 
-    if (!modalState) {
+    const modalState = modal === 'del' ? this.state.delModalShow : this.state.addModalShow;
+    const modalToTrigg = modal === 'del' ? 'delModalShow' : 'addModalShow';
+
+    if (!modalState && modal === 'del') {
       const meetTodelState = this.state.meetToDel;
       meetTodelState.id = id;
       meetTodelState.title = title;
@@ -43,14 +48,14 @@ class App extends Component {
       return
     }
 
-    this.setState({ delModalShow: !modalState });
+    this.setState({ [modalToTrigg]: !modalState });
   }
 
   delMeetingHandler = () => {
     const meetList = [...this.state.list];
     let refreshArray = meetList.filter(item => item.id !== this.state.meetToDel.id);
 
-    this.setState({list: refreshArray, delModalShow: false});
+    this.setState({ list: refreshArray, delModalShow: false });
   }
 
   render() {
@@ -58,18 +63,24 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navbar />
+        <Navbar
+          addTrigger={this.modalTrigger}
+        />
         <Container>
           <List
             meetList={this.state.list}
             showDescript={this.showItemDescript}
-            delTrigger={this.delModalTrigger}
+            delTrigger={this.modalTrigger}
           />
           <DelModal
             show={this.state.delModalShow}
-            delTrigger={this.delModalTrigger}
+            delTrigger={this.modalTrigger}
             delHandler={this.delMeetingHandler}
             meetTitle={this.state.meetToDel.title}
+          />
+          <AddModal
+            show={this.state.addModalShow}
+            addTrigger={this.modalTrigger}
           />
         </Container>
       </div>

@@ -2,32 +2,34 @@ import React, { memo } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const delModal = props => {
+const addModal = props => {
   console.log('DEL MODAL RENDER');
-
-  const closeModal = () => props.delTrigger('del');
 
   return (
     <Modal
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      onHide={closeModal}
+      onHide={props.addTrigger}
       show={props.show}>
       <Modal.Header closeButton>
-        <Modal.Title>Delete "{props.meetTitle}" ?</Modal.Title>
+        <Modal.Title>Add new meeting</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Are you sure you want to delete this meeting?!</Modal.Body>
+      <Modal.Body>
+
+        Tu będzie form
+
+      </Modal.Body>
       <Modal.Footer>
-        <Button variant="outline-warning" onClick={closeModal}>
+        <Button variant="outline-warning" onClick={props.addTrigger}>
           Cancel
         </Button>
-        <Button variant="danger" onClick={props.delHandler}>
-          Delete
+        <Button variant="success" onClick={props.addHandler}>
+          Add
         </Button>
       </Modal.Footer>
     </Modal>
   )
 }
 
-export default memo(delModal);
+export default memo(addModal);
