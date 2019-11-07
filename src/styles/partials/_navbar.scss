@@ -1,5 +1,23 @@
-.App__Logo {
+.brand-logo {
   width: 30px;
   height: 30px;
   margin-right: 10px;
+}
+
+.brand-name {
+  display: none;
+
+  @include medium {
+    display: inline;
+  }
+}
+
+.navbar-buttons {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+
+  button:last-child {
+    margin-left: 10px;
+  }
 }

@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 
 const listItem = props => {
-  console.log('list Item render');
+  // console.log('list Item render');
 
   return (
     <Card>

@@ -24,7 +24,10 @@ const list = props => {
   const addButotn = !lengthState ? <Button variant="success" onClick={props.modalTrigger}>Add meeting </Button> : null;
   
   return (
-    <div className={['meet_list', !lengthState ? 'flex-center' : null].join(' ')}>
+    <div 
+      className={[
+        'meet_list', !lengthState ? 'flex-center' : null, 
+        !props.filtersState ? 'meet_list--nofilters' : null].join(' ')}>
       {icon}
       {meetings}
       {addButotn}

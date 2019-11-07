@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 const delModal = props => {
-  console.log('DEL MODAL RENDER');
-  console.log(props);
+  // console.log('DEL MODAL RENDER');
+  // console.log(props);
   const closeModal = () => props.delTrigger('del');
 
   return (

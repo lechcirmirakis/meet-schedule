@@ -12,15 +12,20 @@ import './App.scss';
 class App extends Component {
   state = {
     list: [],
+    listForReset: [],
     delModalShow: false,
     addModalShow: false,
     formValid: false,
     hourValid: true,
     todaDate: false,
     sortAscent: true,
+    filtersState: false,
     dateRange: {
-      from: '',
-      to: ''
+      dateFrom: '',
+      dateTo: '',
+      disabledTo: true,
+      validInputs: false,
+      validDates: false
     },
     formInputs: {
       name: {
@@ -116,36 +121,63 @@ class App extends Component {
     this.setState({ list: allMeetings, sortAscent: !sortState });
   }
 
+  filtersTrigger = () => this.setState({ filtersState: !this.state.filtersState });
+
   filterMeetings = () => {
-    console.log('click');
+    let dateFrom = Date.parse(this.state.dateRange.dateFrom);
+    let dateTo = Date.parse(this.state.dateRange.dateTo);
+    const dataRangeState = this.state.dateRange;
+
+    if (dateFrom < dateTo) {
+      console.log(true);
+      const listToFilter = this.state.list;
+      dataRangeState.validDates = true;
+
+      this.setState({ dateRange: dataRangeState, listForReset: listToFilter });
+    }
+    else {
+      console.log(false);
+
+      dataRangeState.validDates = 'error';
+      this.setState({ dateRange: dataRangeState });
+    }
   }
 
-  updateDateHandler = event => {
-    const dateType = event.target.name;
+  resetFilters = () => {
+    const listBeforFilter = this.state.listForReset;
+    const dataRangeReset = this.state.dateRange;
+
+    dataRangeReset.dateFrom = '';
+    dataRangeReset.dateTo = '';
+    dataRangeReset.disabledTo = true;
+    dataRangeReset.validInputs = false;
+    dataRangeReset.validDates = false;
+
+    this.setState({list: listBeforFilter, dateRange: dataRangeReset});
+  }
+
+  updateFiltersHandler = event => {
+    const dateName = event.target.name;
     const dateValue = event.target.value;
 
     const dateRange = { ...this.state.dateRange }
-    dateRange[dateType] = dateValue;
+    dateRange[dateName] = dateValue;
 
-    this.setState({ dateRange: dateRange })
+    if (this.state.dateRange.dateFrom === '') {
+      dateRange.disabledTo = false;
+    }
+    if (this.state.dateRange.dateFrom !== '' && this.state.dateRange.dateTo === '') {
+      dateRange.validInputs = true;
+    }
+
+    this.setState({ dateRange: dateRange });
   }
 
-  updateInputsHandler = (event, name) => {
-    const inputType = event.target.name;
-    const inputValue = event.target.value;
+  updateInputsHandler = event => {
+    const formInputs = { ...this.state.formInputs }
+    formInputs[event.target.name].value = event.target.value;
 
-    if (name === 'add') {
-      const formInputs = { ...this.state.formInputs }
-      formInputs[inputType].value = inputValue;
-
-      this.setState({ formInputs: formInputs })
-    }
-    else {
-      const dataRange = { ...this.state.dataRange }
-      dataRange[inputType] = inputValue;
-
-      this.setState({ dataRange: dataRange })
-    }
+    this.setState({ formInputs: formInputs })
   }
 
   showItemDescript = id => {
@@ -259,18 +291,25 @@ class App extends Component {
       <div className='App'>
         <Navbar
           addTrigger={this.modalTrigger}
+          filtersState={this.state.filtersState}
+          filtersTrigger={this.filtersTrigger}
         />
         <Container>
           <Filters
             sortAscent={this.state.sortAscent}
             sortHandler={this.sortMeetings}
+            filterHandler={this.filterMeetings}
             numberOfMeetings={this.state.list.length}
-            updateDate={this.updateInputsHandler}
+            updateDate={this.updateFiltersHandler}
+            dateRange={this.state.dateRange}
+            filtersState={this.state.filtersState}
+            resetFilters={this.resetFilters}
           />
           <List
             meetList={this.state.list}
             showDescript={this.showItemDescript}
             modalTrigger={this.modalTrigger}
+            filtersState={this.state.filtersState}
           />
           <DelModal
             show={this.state.delModalShow}

@@ -3,6 +3,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 10px;
 
   .sorting-box {
     @include mediumLarge {
@@ -23,6 +25,10 @@
       }
     }
 
+    button:last-child {
+      margin-left: 10px;
+    }
+
     .form-control {
       @include mediumLarge {
         width: initial;
@@ -41,4 +47,24 @@
     flex-direction: row;
     align-items: center;
   }
+}
+
+.filter-status {
+  text-align: center;
+  text-align: center;
+  margin: 20px 0;
+  display: none;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .status-error {
+    font-size: 0.8rem;
+    color: red;
+  }
+}
+
+.filter-status--show {
+  display: block;
 }

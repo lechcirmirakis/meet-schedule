@@ -11,11 +11,14 @@ const navbar = props => {
           <img
             alt="App Logo"
             src="images/icons/meet.png"
-            className="App__Logo"
+            className="brand-logo"
           />
-          {' Meet Schedule'}
+          <span className='brand-name'>{' Meet Schedule'}</span>
         </Navbar.Brand>
-        <Button variant="success" onClick={props.addTrigger}>Add</Button>
+        <div className="navbar-buttons">
+          <Button variant="success" onClick={props.addTrigger}>Add</Button>
+          <Button variant={!props.filtersState ? "outline-primary" : "primary"} onClick={props.filtersTrigger}>Filters</Button>
+        </div>
       </Container>
     </Navbar>
   )
