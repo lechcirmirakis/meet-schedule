@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/lechcirmirakis/meet-schedule/static/css/main.c85dfe75.chunk.css",
-    "main.js": "/lechcirmirakis/meet-schedule/static/js/main.1a11715a.chunk.js",
-    "main.js.map": "/lechcirmirakis/meet-schedule/static/js/main.1a11715a.chunk.js.map",
-    "runtime-main.js": "/lechcirmirakis/meet-schedule/static/js/runtime-main.5277aaa1.js",
-    "runtime-main.js.map": "/lechcirmirakis/meet-schedule/static/js/runtime-main.5277aaa1.js.map",
-    "static/css/2.b0bb7f2c.chunk.css": "/lechcirmirakis/meet-schedule/static/css/2.b0bb7f2c.chunk.css",
-    "static/js/2.7e15268a.chunk.js": "/lechcirmirakis/meet-schedule/static/js/2.7e15268a.chunk.js",
-    "static/js/2.7e15268a.chunk.js.map": "/lechcirmirakis/meet-schedule/static/js/2.7e15268a.chunk.js.map",
-    "index.html": "/lechcirmirakis/meet-schedule/index.html",
-    "precache-manifest.c8cde7a1aed097b5eb284725420965c1.js": "/lechcirmirakis/meet-schedule/precache-manifest.c8cde7a1aed097b5eb284725420965c1.js",
-    "service-worker.js": "/lechcirmirakis/meet-schedule/service-worker.js",
-    "static/css/2.b0bb7f2c.chunk.css.map": "/lechcirmirakis/meet-schedule/static/css/2.b0bb7f2c.chunk.css.map",
-    "static/css/main.c85dfe75.chunk.css.map": "/lechcirmirakis/meet-schedule/static/css/main.c85dfe75.chunk.css.map"
+    "main.css": "/meet-schedule/static/css/main.c85dfe75.chunk.css",
+    "main.js": "/meet-schedule/static/js/main.6c8e3441.chunk.js",
+    "main.js.map": "/meet-schedule/static/js/main.6c8e3441.chunk.js.map",
+    "runtime-main.js": "/meet-schedule/static/js/runtime-main.eb191b42.js",
+    "runtime-main.js.map": "/meet-schedule/static/js/runtime-main.eb191b42.js.map",
+    "static/css/2.b0bb7f2c.chunk.css": "/meet-schedule/static/css/2.b0bb7f2c.chunk.css",
+    "static/js/2.7e15268a.chunk.js": "/meet-schedule/static/js/2.7e15268a.chunk.js",
+    "static/js/2.7e15268a.chunk.js.map": "/meet-schedule/static/js/2.7e15268a.chunk.js.map",
+    "index.html": "/meet-schedule/index.html",
+    "precache-manifest.207d8ea1854f06e594b4e60786f1f3d5.js": "/meet-schedule/precache-manifest.207d8ea1854f06e594b4e60786f1f3d5.js",
+    "service-worker.js": "/meet-schedule/service-worker.js",
+    "static/css/2.b0bb7f2c.chunk.css.map": "/meet-schedule/static/css/2.b0bb7f2c.chunk.css.map",
+    "static/css/main.c85dfe75.chunk.css.map": "/meet-schedule/static/css/main.c85dfe75.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.5277aaa1.js",
+    "static/js/runtime-main.eb191b42.js",
     "static/css/2.b0bb7f2c.chunk.css",
     "static/js/2.7e15268a.chunk.js",
     "static/css/main.c85dfe75.chunk.css",
-    "static/js/main.1a11715a.chunk.js"
+    "static/js/main.6c8e3441.chunk.js"
   ]
 }
