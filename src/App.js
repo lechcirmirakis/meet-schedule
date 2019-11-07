@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from './hoc/container';
-import Navbar from './components/navbar';
-import List from './components/list';
-import DelModal from './components/delModal';
-import AddModal from './components/addModal';
-import Filters from './components/filters';
+import Navbar from './components/Navbar/navbar';
+import List from './components/List/list';
+import DelModal from './components/Modals/delModal';
+import AddModal from './components/Modals/addModal';
+import Filters from './components/Filters/filters';
 import staticlist from './static/list';
 import './App.scss';
 
@@ -116,6 +116,38 @@ class App extends Component {
     this.setState({ list: allMeetings, sortAscent: !sortState });
   }
 
+  filterMeetings = () => {
+    console.log('click');
+  }
+
+  updateDateHandler = event => {
+    const dateType = event.target.name;
+    const dateValue = event.target.value;
+
+    const dateRange = { ...this.state.dateRange }
+    dateRange[dateType] = dateValue;
+
+    this.setState({ dateRange: dateRange })
+  }
+
+  updateInputsHandler = (event, name) => {
+    const inputType = event.target.name;
+    const inputValue = event.target.value;
+
+    if (name === 'add') {
+      const formInputs = { ...this.state.formInputs }
+      formInputs[inputType].value = inputValue;
+
+      this.setState({ formInputs: formInputs })
+    }
+    else {
+      const dataRange = { ...this.state.dataRange }
+      dataRange[inputType] = inputValue;
+
+      this.setState({ dataRange: dataRange })
+    }
+  }
+
   showItemDescript = id => {
     const meetList = [...this.state.list];
     const meetIndex = meetList.findIndex(item => item.id === id);
@@ -152,16 +184,6 @@ class App extends Component {
     this.setState({ list: refreshArray, delModalShow: false });
   }
 
-  updateInputsHandler = (event, name) => {
-    const inputType = event.target.name;
-    const inputValue = event.target.value;
-
-    let formInputs = { ...this.state.formInputs }
-    formInputs[inputType].value = inputValue;
-
-    this.setState({ formInputs: formInputs })
-  }
-
   formReset = () => {
     // const resetForm = { ...this.state.formInputs };
     const resetForm = Object.assign({}, this.state.formInputs);
@@ -177,9 +199,9 @@ class App extends Component {
   submitFormHandler = event => {
     event.preventDefault();
     event.stopPropagation();
-    
+
     const form = event.currentTarget;
-    
+
     if (form.checkValidity() === false) {
       this.setState({ formValid: true });
     }
@@ -243,6 +265,7 @@ class App extends Component {
             sortAscent={this.state.sortAscent}
             sortHandler={this.sortMeetings}
             numberOfMeetings={this.state.list.length}
+            updateDate={this.updateInputsHandler}
           />
           <List
             meetList={this.state.list}

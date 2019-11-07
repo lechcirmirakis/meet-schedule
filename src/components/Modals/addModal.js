@@ -32,7 +32,7 @@ const AppModal = props => {
                     rows={input.config.rows}
                     placeholder={input.config.placeholder}
                     required={input.config.required}
-                    onChange={(event) => props.updateInput(event)}
+                    onChange={(event) => props.updateInput(event, 'add')}
                     name={input.key}
                     min={input.config.min}
                   >
