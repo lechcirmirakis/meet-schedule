@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 const AppModal = props => {
   console.log('ADD MODAL RENDER');
-
+  console.log(props);
   const validInfo = !props.hourValid ? <p className="hour_valid">Please enter valid hours</p> : null;
 
   return (

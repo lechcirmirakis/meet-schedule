@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 
 const delModal = props => {
   console.log('DEL MODAL RENDER');
-
+  console.log(props);
   const closeModal = () => props.delTrigger('del');
 
   return (

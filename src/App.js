@@ -18,6 +18,10 @@ class App extends Component {
     hourValid: true,
     todaDate: false,
     sortAscent: true,
+    dateRange: {
+      from: '',
+      to: ''
+    },
     formInputs: {
       name: {
         value: '',
@@ -81,7 +85,6 @@ class App extends Component {
       })
     }
   }
-
 
   // get Today Date for date input in add meet form
   getTodayDate = () => {
@@ -172,18 +175,15 @@ class App extends Component {
   }
 
   submitFormHandler = event => {
+    event.preventDefault();
+    event.stopPropagation();
+    
     const form = event.currentTarget;
-
+    
     if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-
       this.setState({ formValid: true });
     }
     else {
-      event.preventDefault();
-      event.stopPropagation();
-
       let startTime = Date.parse('01/01/2011 ' + this.state.formInputs.start.value);
       let endTime = Date.parse('01/01/2011 ' + this.state.formInputs.end.value);
 

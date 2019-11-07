@@ -1,3 +1,44 @@
 .filters {
   margin: 80px 0 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  .sorting-box {
+    @include mediumLarge {
+      width: 30%;
+    }
+  }
+
+  .filter-box {
+    display: flex;
+    flex-wrap: wrap;
+
+    > * {
+      margin-bottom: 10px;
+
+      @include mediumLarge {
+        margin-bottom: 0;
+        margin-left: 10px;
+      }
+    }
+
+    .form-control {
+      @include mediumLarge {
+        width: initial;
+      }
+    }
+
+    @include mediumLarge {
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      width: 70%;
+      order: 1;
+    }
+  }
+
+  @include mediumLarge {
+    flex-direction: row;
+    align-items: center;
+  }
 }
