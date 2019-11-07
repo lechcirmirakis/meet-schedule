@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import List from './components/list';
 import DelModal from './components/delModal';
 import AddModal from './components/addModal';
+import Filters from './components/filters';
 import staticlist from './static/list';
 import './App.scss';
 
@@ -16,6 +17,7 @@ class App extends Component {
     formValid: false,
     hourValid: true,
     todaDate: false,
+    sortAscent: true,
     formInputs: {
       name: {
         value: '',
@@ -69,13 +71,17 @@ class App extends Component {
       const formInputs = { ...this.state.formInputs };
       formInputs.date.min = this.getTodayDate();
 
+      // when main up component did mount, get static data and sort them
       this.setState({
         list: staticlist,
         formInputs: formInputs,
         todayDate: true
+      }, () => {
+        this.sortMeetings();
       })
     }
   }
+
 
   // get Today Date for date input in add meet form
   getTodayDate = () => {
@@ -89,6 +95,22 @@ class App extends Component {
     if (mm < 10) { mm = '0' + mm }
 
     return todayDate = yyyy + '-' + mm + '-' + dd;
+  }
+
+  // sorting list of meetings
+  sortMeetings = () => {
+    const allMeetings = [...this.state.list];
+    const sortState = this.state.sortAscent;
+    const sortKey = 'date';
+
+    if (!sortState) {
+      allMeetings.sort((a, b) => a[sortKey].localeCompare(b[sortKey]))
+    }
+    else {
+      allMeetings.sort((a, b) => b[sortKey].localeCompare(a[sortKey]))
+    }
+
+    this.setState({ list: allMeetings, sortAscent: !sortState });
   }
 
   showItemDescript = id => {
@@ -217,6 +239,11 @@ class App extends Component {
           addTrigger={this.modalTrigger}
         />
         <Container>
+          <Filters
+            sortAscent={this.state.sortAscent}
+            sortHandler={this.sortMeetings}
+            numberOfMeetings={this.state.list.length}
+          />
           <List
             meetList={this.state.list}
             showDescript={this.showItemDescript}

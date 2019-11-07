@@ -1,0 +1,15 @@
+.sort-btn {
+  position: relative;
+  padding: 0.375rem 1.3rem;
+
+  .sort-arrow {
+    width: 10px;
+    position: relative;
+    top: -1px;
+    right: -8px;
+  }
+
+  .up {
+    transform: rotate(180deg);
+  }
+}

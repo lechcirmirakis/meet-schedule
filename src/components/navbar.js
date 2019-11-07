@@ -7,7 +7,7 @@ const navbar = props => {
   return (
     <Navbar bg="dark" variant="dark" fixed="top">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img
             alt="App Logo"
             src="images/icons/meet.png"
