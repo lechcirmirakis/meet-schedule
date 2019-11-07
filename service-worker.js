@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/lechcirmirakis/meet-schedule/precache-manifest.049b9eafd988027b93e8a3f4d88160c4.js"
+  "/lechcirmirakis/meet-schedule/precache-manifest.c8cde7a1aed097b5eb284725420965c1.js"
 );
 
 self.addEventListener('message', (event) => {

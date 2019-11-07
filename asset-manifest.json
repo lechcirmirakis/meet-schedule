@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/lechcirmirakis/meet-schedule/static/css/main.fc87b5b2.chunk.css",
-    "main.js": "/lechcirmirakis/meet-schedule/static/js/main.a12652f3.chunk.js",
-    "main.js.map": "/lechcirmirakis/meet-schedule/static/js/main.a12652f3.chunk.js.map",
+    "main.css": "/lechcirmirakis/meet-schedule/static/css/main.c85dfe75.chunk.css",
+    "main.js": "/lechcirmirakis/meet-schedule/static/js/main.1a11715a.chunk.js",
+    "main.js.map": "/lechcirmirakis/meet-schedule/static/js/main.1a11715a.chunk.js.map",
     "runtime-main.js": "/lechcirmirakis/meet-schedule/static/js/runtime-main.5277aaa1.js",
     "runtime-main.js.map": "/lechcirmirakis/meet-schedule/static/js/runtime-main.5277aaa1.js.map",
     "static/css/2.b0bb7f2c.chunk.css": "/lechcirmirakis/meet-schedule/static/css/2.b0bb7f2c.chunk.css",
-    "static/js/2.acadc2e4.chunk.js": "/lechcirmirakis/meet-schedule/static/js/2.acadc2e4.chunk.js",
-    "static/js/2.acadc2e4.chunk.js.map": "/lechcirmirakis/meet-schedule/static/js/2.acadc2e4.chunk.js.map",
+    "static/js/2.7e15268a.chunk.js": "/lechcirmirakis/meet-schedule/static/js/2.7e15268a.chunk.js",
+    "static/js/2.7e15268a.chunk.js.map": "/lechcirmirakis/meet-schedule/static/js/2.7e15268a.chunk.js.map",
     "index.html": "/lechcirmirakis/meet-schedule/index.html",
-    "precache-manifest.049b9eafd988027b93e8a3f4d88160c4.js": "/lechcirmirakis/meet-schedule/precache-manifest.049b9eafd988027b93e8a3f4d88160c4.js",
+    "precache-manifest.c8cde7a1aed097b5eb284725420965c1.js": "/lechcirmirakis/meet-schedule/precache-manifest.c8cde7a1aed097b5eb284725420965c1.js",
     "service-worker.js": "/lechcirmirakis/meet-schedule/service-worker.js",
     "static/css/2.b0bb7f2c.chunk.css.map": "/lechcirmirakis/meet-schedule/static/css/2.b0bb7f2c.chunk.css.map",
-    "static/css/main.fc87b5b2.chunk.css.map": "/lechcirmirakis/meet-schedule/static/css/main.fc87b5b2.chunk.css.map"
+    "static/css/main.c85dfe75.chunk.css.map": "/lechcirmirakis/meet-schedule/static/css/main.c85dfe75.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.5277aaa1.js",
     "static/css/2.b0bb7f2c.chunk.css",
-    "static/js/2.acadc2e4.chunk.js",
-    "static/css/main.fc87b5b2.chunk.css",
-    "static/js/main.a12652f3.chunk.js"
+    "static/js/2.7e15268a.chunk.js",
+    "static/css/main.c85dfe75.chunk.css",
+    "static/js/main.1a11715a.chunk.js"
   ]
 }
