@@ -1,14 +1,19 @@
-import React, { memo, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import formInputs from '../../static/addFormObject';
+import WithTodayDate from '../../hoc/todayDate';
 
-const AppModal = props => {
-  // console.log('ADD MODAL RENDER');
+const AppModal = React.memo(props => {
+  console.log(props.todayDate);
+  console.log('ADD MODAL RENDER');
+
   const [formInputsState, setFormInputsState] = useState(formInputs);
   const [formValidState, setFormValidState] = useState(false);
   const [hourValidState, setHourValidState] = useState(true);
+
+  useEffect(() => console.log('value changed!'), [props.show]);
 
   const submitHandler = event => {
     event.preventDefault();
@@ -39,8 +44,10 @@ const AppModal = props => {
       }
 
       props.onAddMeeting(newMeeting);
+
       setFormValidState(false);
       setHourValidState(true);
+
       setFormInputsState(prevState => {
         const resetForm = prevState;
         for (const key in resetForm) {
@@ -119,6 +126,6 @@ const AppModal = props => {
       </Modal.Body>
     </Modal>
   )
-}
+});
 
-export default memo(AppModal);
+export default WithTodayDate(AppModal);

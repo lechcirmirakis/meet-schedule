@@ -49,20 +49,6 @@ class App extends Component {
     }
   }
 
-  // get Today Date for date input in add meet form
-  getTodayDate = () => {
-    let todayDate = new Date();
-
-    let dd = todayDate.getDate();
-    let mm = todayDate.getMonth() + 1;
-    const yyyy = todayDate.getFullYear();
-
-    if (dd < 10) { dd = '0' + dd }
-    if (mm < 10) { mm = '0' + mm }
-
-    return todayDate = yyyy + '-' + mm + '-' + dd;
-  }
-
   // sorting list of meetings
   sortMeetings = () => {
     const allMeetings = [...this.state.list];
@@ -211,7 +197,6 @@ class App extends Component {
             show={this.state.addModalShow}
             addTrigger={this.modalTrigger}
             onAddMeeting={this.addMeetingHandler}
-            getTodayDate={this.getTodayDate}
           />
         </Container>
       </div>
