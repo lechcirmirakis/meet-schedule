@@ -15,9 +15,6 @@ class App extends Component {
     listForReset: [],
     delModalShow: false,
     addModalShow: false,
-    // formValid: false,
-    // hourValid: true,
-    todaDate: false,
     sortAscent: true,
     filtersState: false,
     dateRange: {
@@ -34,19 +31,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (!this.state.todaDate) {
-      // const formInputs = { ...this.state.formInputs };
-      // formInputs.date.min = this.getTodayDate();
-
-      // when main up component did mount, get static data and sort them
+    console.log('component did MOUNT ');
+    
       this.setState({
         list: staticlist,
-        // formInputs: formInputs,
-        todayDate: true
       }, () => {
         this.sortMeetings();
       })
-    }
   }
 
   // sorting list of meetings
@@ -153,6 +144,9 @@ class App extends Component {
     this.setState({ list: refreshArray, delModalShow: false });
   }
 
+
+  
+  
   addMeetingHandler = newMeet => {
     const meetList = [...this.state.list];
     meetList.push(newMeet);
@@ -161,7 +155,7 @@ class App extends Component {
   }
 
   render() {
-    // console.log('APP RENDER');
+    console.log('APP RENDER');
 
     return (
       <div className='App'>

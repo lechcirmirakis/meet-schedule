@@ -6,14 +6,16 @@ import formInputs from '../../static/addFormObject';
 import WithTodayDate from '../../hoc/todayDate';
 
 const AppModal = React.memo(props => {
-  console.log(props.todayDate);
-  console.log('ADD MODAL RENDER');
-
   const [formInputsState, setFormInputsState] = useState(formInputs);
   const [formValidState, setFormValidState] = useState(false);
   const [hourValidState, setHourValidState] = useState(true);
 
-  useEffect(() => console.log('value changed!'), [props.show]);
+  // add todayDate to date select
+  useEffect(() => {
+    const inputsState = formInputsState;
+    inputsState.date.min = props.todayDate;
+    setFormInputsState(inputsState)
+  }, [props.todayDate, formInputsState]);
 
   const submitHandler = event => {
     event.preventDefault();
@@ -54,7 +56,7 @@ const AppModal = React.memo(props => {
           resetForm[key].value = ''
         }
         return resetForm
-      })
+      });
     }
   };
 
