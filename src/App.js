@@ -13,14 +13,17 @@ const App = () => {
   console.log('App Render');
 
   const [meetListState, setMeetListState] = useState([]);
+  const [listForReset, setListForReset] = useState([]);
   const [addModalState, setAddModalState] = useState(false);
   const [filtersShowState, setFiltersShowState] = useState(false);
   const [delModalState, setDelModalState] = useState(false);
   const [meetToDelState, setMeetToDelState] = useState({ id: null, title: '' });
+  const [sortAscentState, setSortAscentState] = useState(false);
 
   useEffect(() => {
-    console.log('first USe Effect for sort meetings');
-    setMeetListState(staticlist.sort((a, b) => b['date'].localeCompare(a['date'])));
+    const sortList = staticlist.sort((a, b) => b['date'].localeCompare(a['date']))
+    setMeetListState(sortList);
+    setListForReset(sortList);
   }, []);
 
   const addModalTrigger = () => setAddModalState(prevState => !prevState);
@@ -52,6 +55,33 @@ const App = () => {
     setDelModalState(false);
   }
 
+  const addMeetingHandler = newMeet => {
+    const meetList = meetListState;
+    meetList.push(newMeet);
+    setMeetListState(meetList);
+    setAddModalState(false);
+  }
+
+  const sortMeetingsHandler = () => {
+    const allMeetings = meetListState;
+    const sortState = sortAscentState;
+
+    if (!sortState) {
+      allMeetings.sort((a, b) => a['date'].localeCompare(b['date']))
+    }
+    else {
+      allMeetings.sort((a, b) => b['date'].localeCompare(a['date']))
+    }
+
+    setMeetListState(allMeetings);
+    setSortAscentState(!sortState);
+  }
+
+  const filterMeetingsHandler = (dataRange) => {
+    const listForFilter = [...listForReset].filter(meet => meet.date >= dataRange.dateFrom && meet.date <= dataRange.dateTo);
+    setMeetListState(listForFilter);
+  }
+
   return (
     <div className='App'>
       <Navbar
@@ -60,20 +90,19 @@ const App = () => {
         filtersTrigger={filtersTrigger}
       />
       <Container>
-        {/* <Filters
-          sortAscent={this.state.sortAscent}
-          sortHandler={this.sortMeetings}
-          filterHandler={this.filterMeetings}
-          numberOfMeetings={this.state.list.length}
-          updateDate={this.updateFiltersHandler}
-          dateRange={this.state.dateRange}
-          filtersState={this.state.filtersState}
-          resetFilters={this.resetFilters}
-        /> */}
+        <Filters
+          sortAscent={sortAscentState}
+          sortHandler={sortMeetingsHandler}
+          numberOfMeetings={meetListState.length}
+          filtersState={filtersShowState}
+          filterHandler={filterMeetingsHandler}
+        // resetFilters={this.resetFilters}
+        />
         <List
           meetList={meetListState}
           showDescript={showItemDescript}
           modalTrigger={modalTrigger}
+          addModalTrigger={addModalTrigger}
           filtersState={filtersShowState}
         />
         <DelModal
@@ -85,63 +114,13 @@ const App = () => {
         <AddModal
           show={addModalState}
           addTrigger={addModalTrigger}
-        // onAddMeeting={this.addMeetingHandler}
+          onAddMeeting={addMeetingHandler}
         />
       </Container>
     </div>
   )
 }
-
-
 // class App extends Component {
-//   state = {
-//     listForReset: [],
-//     sortAscent: true,
-//     dateRange: {
-//       dateFrom: '',
-//       dateTo: '',
-//       disabledTo: true,
-//       validInputs: false,
-//       validDates: false
-//     }
-//   }
-//
-//   // sorting list of meetings
-//   sortMeetings = () => {
-//     const allMeetings = [...this.state.list];
-//     const sortState = this.state.sortAscent;
-//     const sortKey = 'date';
-
-//     if (!sortState) {
-//       allMeetings.sort((a, b) => a[sortKey].localeCompare(b[sortKey]))
-//     }
-//     else {
-//       allMeetings.sort((a, b) => b[sortKey].localeCompare(a[sortKey]))
-//     }
-
-//     this.setState({ list: allMeetings, sortAscent: !sortState });
-//   }
-//
-//   filterMeetings = () => {
-//     let dateFrom = Date.parse(this.state.dateRange.dateFrom);
-//     let dateTo = Date.parse(this.state.dateRange.dateTo);
-//     const dataRangeState = this.state.dateRange;
-
-//     if (dateFrom < dateTo) {
-//       console.log(true);
-//       const listToFilter = this.state.list;
-//       dataRangeState.validDates = true;
-
-//       this.setState({ dateRange: dataRangeState, listForReset: listToFilter });
-//     }
-//     else {
-//       console.log(false);
-
-//       dataRangeState.validDates = 'error';
-//       this.setState({ dateRange: dataRangeState });
-//     }
-//   }
-
 //   resetFilters = () => {
 //     const listBeforFilter = this.state.listForReset;
 //     const dataRangeReset = this.state.dateRange;
@@ -154,35 +133,5 @@ const App = () => {
 
 //     this.setState({ list: listBeforFilter, dateRange: dataRangeReset });
 //   }
-
-//   updateFiltersHandler = event => {
-//     const dateName = event.target.name;
-//     const dateValue = event.target.value;
-
-//     const dateRange = { ...this.state.dateRange }
-//     dateRange[dateName] = dateValue;
-
-//     if (this.state.dateRange.dateFrom === '') {
-//       dateRange.disabledTo = false;
-//     }
-//     if (this.state.dateRange.dateFrom !== '' && this.state.dateRange.dateTo === '') {
-//       dateRange.validInputs = true;
-//     }
-
-//     this.setState({ dateRange: dateRange });
-//   }
-
-
-
-
-
-
-//   addMeetingHandler = newMeet => {
-//     const meetList = [...this.state.list];
-//     meetList.push(newMeet);
-
-//     this.setState({ list: meetList, addModalShow: false });
-//   }
-// }
 
 export default App;

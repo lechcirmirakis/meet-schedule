@@ -3,8 +3,6 @@ import Button from 'react-bootstrap/Button';
 import ListItem from './listItem';
 
 const list = props => {
-  console.log(props.meetList);
-  
 
   const showList = item => {
     const { id, title, descript, date, startTime, endTime, open } = item;
@@ -24,7 +22,7 @@ const list = props => {
 
   const icon = !lengthState ? <img className="list_icon" src="images/icons/stop.png" alt="no meetings" /> : null
   const meetings = lengthState ? props.meetList.map(showList) : <h4 className="list_title">You don't have any meetings scheduled</h4>
-  const addButotn = !lengthState ? <Button variant="success" onClick={props.modalTrigger}>Add meeting </Button> : null;
+  const addButotn = !lengthState ? <Button variant="success" onClick={props.addModalTrigger}>Add meeting </Button> : null;
   
   return (
     <div 
