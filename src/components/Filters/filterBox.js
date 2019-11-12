@@ -31,7 +31,7 @@ const FilterBox = props => {
         })
       }
       <Button onClick={props.filterHandler} disabled={!props.validInputs}>Filter</Button>
-      <Button onClick={props.resetFilters} disabled={!props.validDates} variant="outline-info"> Reset </Button>
+      <Button onClick={props.onResetFilters} disabled={!props.validDates} variant="outline-info"> Reset </Button>
     </div>
   )
 }

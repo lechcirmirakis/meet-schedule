@@ -33,8 +33,6 @@ const Filters = props => {
   }
 
   const filterMeetings = () => {
-    console.log('cliclek filter');
-
     let dateFrom = Date.parse(filterInputsState.dateFrom.value);
     let dateTo = Date.parse(filterInputsState.dateTo.value);
 
@@ -49,9 +47,17 @@ const Filters = props => {
       props.filterHandler(dataRange);
     }
     else {
-      console.log(false);
       setValidDatesState('error');
     }
+  }
+
+  const resetFilters = () => {
+    console.log('reset');
+
+    setValidInputsState(false);
+    setValidDatesState(false);
+    setfilterInputsState(filterInputs);
+    props.resetHandler();
   }
 
   let filtersStatus;
@@ -74,7 +80,7 @@ const Filters = props => {
             filterHandler={filterMeetings}
             filtersInputs={filterInputsState}
             updateFiltersHandler={updateFiltersHandler}
-          // resetFilters={props.resetFilters}
+            onResetFilters={resetFilters}
           />
           <SortBox
             sortAscent={props.sortAscent}

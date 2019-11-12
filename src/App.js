@@ -56,9 +56,10 @@ const App = () => {
   }
 
   const addMeetingHandler = newMeet => {
-    const meetList = meetListState;
+    const meetList = [...listForReset];
     meetList.push(newMeet);
     setMeetListState(meetList);
+    setListForReset(meetList);
     setAddModalState(false);
   }
 
@@ -82,6 +83,8 @@ const App = () => {
     setMeetListState(listForFilter);
   }
 
+  const resetFiltersHandler = () => setMeetListState(listForReset);
+
   return (
     <div className='App'>
       <Navbar
@@ -96,7 +99,7 @@ const App = () => {
           numberOfMeetings={meetListState.length}
           filtersState={filtersShowState}
           filterHandler={filterMeetingsHandler}
-        // resetFilters={this.resetFilters}
+          resetHandler={resetFiltersHandler}
         />
         <List
           meetList={meetListState}
@@ -120,18 +123,5 @@ const App = () => {
     </div>
   )
 }
-// class App extends Component {
-//   resetFilters = () => {
-//     const listBeforFilter = this.state.listForReset;
-//     const dataRangeReset = this.state.dateRange;
-
-//     dataRangeReset.dateFrom = '';
-//     dataRangeReset.dateTo = '';
-//     dataRangeReset.disabledTo = true;
-//     dataRangeReset.validInputs = false;
-//     dataRangeReset.validDates = false;
-
-//     this.setState({ list: listBeforFilter, dateRange: dataRangeReset });
-//   }
 
 export default App;
