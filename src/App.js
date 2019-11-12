@@ -11,10 +11,12 @@ import './App.scss';
 
 const App = () => {
   console.log('App Render');
-  
+
   const [meetListState, setMeetListState] = useState([]);
   const [addModalState, setAddModalState] = useState(false);
   const [filtersShowState, setFiltersShowState] = useState(false);
+  const [delModalState, setDelModalState] = useState(false);
+  const [meetToDelState, setMeetToDelState] = useState({ id: null, title: '' });
 
   useEffect(() => {
     console.log('first USe Effect for sort meetings');
@@ -31,6 +33,23 @@ const App = () => {
     meetList[meetIndex].open = !openState;
 
     setMeetListState(meetList);
+  }
+
+  const modalTrigger = (id, title) => {
+    if (!delModalState) {
+      const meetToDel = { id: id, title: title }
+      setMeetToDelState(meetToDel);
+      setDelModalState(!delModalState);
+      return
+    }
+
+    setDelModalState(!delModalState);
+  }
+
+  const delMeetingHandler = () => {
+    let refreshArray = meetListState.filter(item => item.id !== meetToDelState.id);
+    setMeetListState(refreshArray);
+    setDelModalState(false);
   }
 
   return (
@@ -54,15 +73,15 @@ const App = () => {
         <List
           meetList={meetListState}
           showDescript={showItemDescript}
-        // modalTrigger={this.modalTrigger}
-        // filtersState={this.state.filtersState}
+          modalTrigger={modalTrigger}
+          filtersState={filtersShowState}
         />
-        {/* <DelModal
-          show={this.state.delModalShow}
-          delTrigger={this.modalTrigger}
-          delHandler={this.delMeetingHandler}
-          meetTitle={this.state.meetToDel.title}
-        /> */}
+        <DelModal
+          show={delModalState}
+          delTrigger={modalTrigger}
+          delHandler={delMeetingHandler}
+          meetTitle={meetToDelState.title}
+        />
         <AddModal
           show={addModalState}
           addTrigger={addModalTrigger}
@@ -76,34 +95,17 @@ const App = () => {
 
 // class App extends Component {
 //   state = {
-//     list: [],
 //     listForReset: [],
-//     delModalShow: false,
 //     sortAscent: true,
-//     filtersState: false,
 //     dateRange: {
 //       dateFrom: '',
 //       dateTo: '',
 //       disabledTo: true,
 //       validInputs: false,
 //       validDates: false
-//     },
-//     meetToDel: {
-//       id: null,
-//       title: ''
 //     }
 //   }
-
-//   componentDidMount() {
-//     console.log('component did MOUNT ');
-
-//     this.setState({
-//       list: staticlist,
-//     }, () => {
-//       this.sortMeetings();
-//     })
-//   }
-
+//
 //   // sorting list of meetings
 //   sortMeetings = () => {
 //     const allMeetings = [...this.state.list];
@@ -169,32 +171,8 @@ const App = () => {
 
 //     this.setState({ dateRange: dateRange });
 //   }
-//   modalTrigger = (modal, id, title) => {
-//     const modalState = modal === 'del' ? this.state.delModalShow : this.state.addModalShow;
-//     const modalToTrigg = modal === 'del' ? 'delModalShow' : 'addModalShow';
 
-//     if (!modalState && modal === 'del') {
-//       const meetTodelState = this.state.meetToDel;
-//       meetTodelState.id = id;
-//       meetTodelState.title = title;
 
-//       this.setState({ delModalShow: !modalState, meetToDel: meetTodelState });
-//       return
-//     }
-
-//     // if (modal !== 'del') {
-//     //   this.formReset();
-//     // }
-
-//     this.setState({ [modalToTrigg]: !modalState, hourValid: true });
-//   }
-
-//   delMeetingHandler = () => {
-//     const meetList = [...this.state.list];
-//     let refreshArray = meetList.filter(item => item.id !== this.state.meetToDel.id);
-
-//     this.setState({ list: refreshArray, delModalShow: false });
-//   }
 
 
 

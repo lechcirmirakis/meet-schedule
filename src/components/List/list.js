@@ -17,7 +17,7 @@ const list = props => {
       endtime={endTime}
       open={open}
       showDescript={() => props.showDescript(id)}
-      deltrigger={() => props.modalTrigger("del", id, title)} />
+      deltrigger={() => props.modalTrigger(id, title)} />
   }
 
   const lengthState = props.meetList.length > 0;
