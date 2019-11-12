@@ -1,8 +1,9 @@
-import React, { memo } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ListItem from './listItem';
 
 const list = props => {
+
   const showList = item => {
     const { id, title, descript, date, startTime, endTime, open } = item;
     return <ListItem
@@ -14,14 +15,14 @@ const list = props => {
       endtime={endTime}
       open={open}
       showDescript={() => props.showDescript(id)}
-      deltrigger={() => props.modalTrigger("del", id, title)} />
+      deltrigger={() => props.modalTrigger(id, title)} />
   }
 
-  const lengthState = props.meetList.length > 0
+  const lengthState = props.meetList.length > 0;
 
   const icon = !lengthState ? <img className="list_icon" src="images/icons/stop.png" alt="no meetings" /> : null
   const meetings = lengthState ? props.meetList.map(showList) : <h4 className="list_title">You don't have any meetings scheduled</h4>
-  const addButotn = !lengthState ? <Button variant="success" onClick={props.modalTrigger}>Add meeting </Button> : null;
+  const addButotn = !lengthState ? <Button variant="success" onClick={props.addModalTrigger}>Add meeting </Button> : null;
   
   return (
     <div 
@@ -35,4 +36,4 @@ const list = props => {
   )
 }
 
-export default memo(list);
+export default list;

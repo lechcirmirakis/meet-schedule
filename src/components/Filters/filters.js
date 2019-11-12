@@ -1,13 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Collapse from 'react-bootstrap/Collapse';
 import FilterBox from './filterBox';
+import filterInputs from '../../static/filtersInputsObject';
 import SortBox from './sortBox';
 
-const filters = props => {
-  const dateValid = props.dateRange.validDates;
+const Filters = props => {
+  console.log('FILTERS RENDER');
+  const [filterInputsState, setfilterInputsState] = useState(filterInputs);
+  const [validInputsState, setValidInputsState] = useState(false);
+  const [validDatesState, setValidDatesState] = useState(false);
+
+  const updateFiltersHandler = event => {
+    event.persist()
+    const updateValue = event.target.value;
+
+    setfilterInputsState(prevState => {
+      const newState = { ...prevState }
+
+      if (newState.dateFrom.value === '') {
+        newState.dateTo.disabled = false;
+      }
+
+      newState[event.target.name].value = updateValue;
+      newState.dateTo.min = updateValue;
+
+      if (newState.dateFrom.value !== '' && newState.dateTo.value !== '') {
+        setValidInputsState(true)
+      }
+
+      return newState
+    })
+  }
+
+  const filterMeetings = () => {
+    let dateFrom = Date.parse(filterInputsState.dateFrom.value);
+    let dateTo = Date.parse(filterInputsState.dateTo.value);
+
+    if (dateFrom < dateTo) {
+      setValidDatesState(true);
+
+      const dataRange = {
+        dateFrom: filterInputsState.dateFrom.value,
+        dateTo: filterInputsState.dateTo.value
+      }
+
+      props.filterHandler(dataRange);
+    }
+    else {
+      setValidDatesState('error');
+    }
+  }
+
+  const resetFilters = () => {
+    console.log('reset');
+
+    setValidInputsState(false);
+    setValidDatesState(false);
+    setfilterInputsState(filterInputs);
+    props.resetHandler();
+  }
+
   let filtersStatus;
 
-  if (dateValid === 'error') {
+  if (validDatesState === 'error') {  
     filtersStatus = (
       <p className="status-error">Start date cannot be greater than end date </p>
     )
@@ -15,24 +70,17 @@ const filters = props => {
     document.querySelector('.filter-status').style.display = 'block';
   }
 
-  else {
-    filtersStatus = (
-      <React.Fragment>
-        <p>Show Meetings between:</p>
-        <p> {props.dateRange.dateFrom} - {props.dateRange.dateTo}</p>
-      </React.Fragment>
-    )
-  }
-
   return (
     <Collapse in={props.filtersState}>
       <div>
         <div className="filters">
           <FilterBox
-            updateDate={props.updateDate}
-            filterHandler={props.filterHandler}
-            dateRange={props.dateRange}
-            resetFilters={props.resetFilters}
+            validInputs={validInputsState}
+            validDates={validDatesState}
+            filterHandler={filterMeetings}
+            filtersInputs={filterInputsState}
+            updateFiltersHandler={updateFiltersHandler}
+            onResetFilters={resetFilters}
           />
           <SortBox
             sortAscent={props.sortAscent}
@@ -40,7 +88,7 @@ const filters = props => {
             numberOfMeetings={props.numberOfMeetings}
           />
         </div>
-        <div className={["filter-status", dateValid ? 'filter-status--show' : null].join(' ')}>
+        <div className={["filter-status", validDatesState ? 'filter-status--show' : null].join(' ')}>
           {filtersStatus}
         </div>
       </div>
@@ -48,4 +96,4 @@ const filters = props => {
   )
 }
 
-export default filters;
+export default Filters;
