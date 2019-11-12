@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const FilterBox = props => {
+const FilterBox = React.memo(props => {
 
   const filtersInputsArray = [];
 
@@ -34,6 +34,6 @@ const FilterBox = props => {
       <Button onClick={props.onResetFilters} disabled={!props.validDates} variant="outline-info"> Reset </Button>
     </div>
   )
-}
+})
 
 export default FilterBox;

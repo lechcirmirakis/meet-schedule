@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const sortBox = props => {
+const sortBox = React.memo(props => {
   return (
     <div className="sorting-box">
       <Button
@@ -18,6 +18,6 @@ const sortBox = props => {
       <span>By Date</span>
     </div>
   )
-}
+});
 
 export default sortBox;

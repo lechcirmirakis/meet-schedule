@@ -10,8 +10,6 @@ import staticlist from './static/list';
 import './App.scss';
 
 const App = () => {
-  console.log('App Render');
-
   const [meetListState, setMeetListState] = useState([]);
   const [listForReset, setListForReset] = useState([]);
   const [addModalState, setAddModalState] = useState(false);
@@ -52,6 +50,7 @@ const App = () => {
   const delMeetingHandler = () => {
     let refreshArray = meetListState.filter(item => item.id !== meetToDelState.id);
     setMeetListState(refreshArray);
+    setListForReset(refreshArray);
     setDelModalState(false);
   }
 

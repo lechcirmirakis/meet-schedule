@@ -4,8 +4,7 @@ import FilterBox from './filterBox';
 import filterInputs from '../../static/filtersInputsObject';
 import SortBox from './sortBox';
 
-const Filters = props => {
-  console.log('FILTERS RENDER');
+const Filters = React.memo(props => {
   const [filterInputsState, setfilterInputsState] = useState(filterInputs);
   const [validInputsState, setValidInputsState] = useState(false);
   const [validDatesState, setValidDatesState] = useState(false);
@@ -52,8 +51,6 @@ const Filters = props => {
   }
 
   const resetFilters = () => {
-    console.log('reset');
-
     setValidInputsState(false);
     setValidDatesState(false);
     setfilterInputsState(filterInputs);
@@ -94,6 +91,6 @@ const Filters = props => {
       </div>
     </Collapse>
   )
-}
+})
 
 export default Filters;
