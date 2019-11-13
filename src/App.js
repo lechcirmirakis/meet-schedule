@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from './hoc/container';
 import Navbar from './components/Navbar/navbar';
@@ -24,8 +24,8 @@ const App = () => {
     setListForReset(sortList);
   }, []);
 
-  const addModalTrigger = () => setAddModalState(prevState => !prevState);
-  const filtersTrigger = () => setFiltersShowState(prevState => !prevState);
+  const addModalTrigger = useCallback(() => setAddModalState(prevState => !prevState), []);
+  const filtersTrigger = useCallback(() => setFiltersShowState(prevState => !prevState), []);
 
   const showItemDescript = id => {
     const meetList = [...meetListState];
@@ -40,8 +40,6 @@ const App = () => {
     if (!delModalState) {
       const meetToDel = { id: id, title: title }
       setMeetToDelState(meetToDel);
-      setDelModalState(!delModalState);
-      return
     }
 
     setDelModalState(!delModalState);
@@ -88,8 +86,8 @@ const App = () => {
     <div className='App'>
       <Navbar
         addTrigger={addModalTrigger}
-        filtersState={filtersShowState}
         filtersTrigger={filtersTrigger}
+        filtersState={filtersShowState}
       />
       <Container>
         <Filters

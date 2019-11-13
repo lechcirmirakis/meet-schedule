@@ -3,7 +3,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Container from '../../hoc/container';
 
-const navbar = props => {
+const navbar = React.memo(props => {
+  console.log('NAVBAR RENDER');
+  
   return (
     <Navbar bg="dark" variant="dark" fixed="top">
       <Container>
@@ -22,6 +24,6 @@ const navbar = props => {
       </Container>
     </Navbar>
   )
-}
+})
 
 export default navbar;
